@@ -1,2 +1,2 @@
-<span style="font-family: 'Lucida Console';font-size:89px;">This is our tree</span><br>
+## This is the tree which we have added using list in BinaryTree.py file<br>
 ![alt text](https://github.com/themockingjester/Datastructures/blob/master/venv/images/tree.png)
