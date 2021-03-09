@@ -1,3 +1,5 @@
-# Datastructures
-This directory contains all the datastructures using python
-https://miro.medium.com/max/400/1*bOxDNmWX_nL4W4qB-ey0VQ.gif
+## Datastructures
+###### This directory contains all the datastructures using python<br>
+
+![alt text](https://3.bp.blogspot.com/-ZTPyluNn8oU/XlkES_014qI/AAAAAAAAHRs/fG18AQEHxAwtzXiM7nKbssA3sl3uPVAtQCLcBGAsYHQ/s1600/0_SESFJYWU5a-3XM9m.gif)
+
