@@ -216,12 +216,114 @@ class BinaryTree:
             self.matches_found = 0
             self.replaceHelper(self.root,val,newval)
             print(str(self.matches_found)+" matches found")
+    def inOrderTraversalHelper(self,root):
+        """
+        This is the actual inorder traversal performer
+        inorder  ----> (Left, Root, Right)
+        :param root: current Node
+        :return: Nothing
+        """
+        if root:
+            self.inOrderTraversalHelper(root.left)
+            print(root.val)
+            self.inOrderTraversalHelper(root.right)
 
+    def inOrderTraversal(self):
+        """
+        this method initiates the inorder traversal
+        :return: Nothing
+        """
+        self.inOrderTraversalHelper(self.root)
+    def preOrderTraversalHelper(self,root):
+        """
+        Preorder -----> (Root, Left, Right)
+        This is the actual preorder traversal performer
+        :param root: current Node
+        :return: Nothing
+        """
+        if root:
+            print(root.val)
+            self.preOrderTraversalHelper(root.left)
+            self.preOrderTraversalHelper(root.right)
+    def preOrderTraversal(self):
+        """
+        This method initiates the preorder traversal
+        :return: Nothing
+        """
+        self.preOrderTraversalHelper(self.root)
+    def postOrderTraversalHelper(self,root):
+        """
+        Postorder ----> (Left, Right, Root)
+        This method is the actual postorder traversal performer
+        :param root: current Node
+        :return: Nothing
+        """
+        if root:
+            self.postOrderTraversalHelper(root.left)
+            self.postOrderTraversalHelper(root.right)
+            print(root.val)
 
+    def postOrderTraversal(self):
+        """
+        This function initiates the postorder traversal
+        :return: Nothing
+        """
+        self.postOrderTraversalHelper(self.root)
+    def removeHelper(self,root,val):
+        """
+        This method is responsible for actual removing
+        :param root: current Node
+        :param val: value to be removed
+        :return: Nothing
+        """
+        if root:
+            if self.shouldstop==False:
+                if root.left:
+
+                    if root.left.val==val:
+                        root.left = None
+                        if self.shouldremoveall == False:
+                            self.shouldstop = True
+                            return
+                    else:
+                        self.removeHelper(root.left, val)
+                if root.right:
+                    if root.right.val == val:
+                        root.right = None
+                        if self.shouldremoveall == False:
+                            self.shouldstop = True
+                            return
+                    else:
+                        self.removeHelper(root.right, val)
+
+    def remove(self,val):
+        """
+        This methods is responsible for removing one matched value
+        :param val: value to be removed
+        :return: Nothing
+        """
+        self.shouldstop = False
+        self.shouldremoveall = False
+        if self.root.val==val:
+            self.root = None
+        else:
+            self.removeHelper(self.root,val)
+    def removeAll(self,val):
+        """
+        This method is responsible for removing all matching values
+        :param val: value to be removed
+        :return: Nothing
+        """
+        self.shouldstop = False
+        self.shouldremoveall = True
+        if self.root.val==val:
+            self.root = None
+        else:
+            self.removeHelper(self.root,val)
 lis = [1, 2, 3, 4, 5, 6, 7, 8, 9, None, 10, None, None, 11, None]
+
 obj = BinaryTree()
 obj.addUsingList(lis)
-obj.show()
-obj.levelFinder(6)
-obj.replace(6,89)
-obj.show()
+
+obj.postOrderTraversal()
+
