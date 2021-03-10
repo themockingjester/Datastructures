@@ -154,6 +154,68 @@ class BinaryTree:
         else:
             level = 0
             self.levelFinderHelper(self.root, val, level)
+    def replaceHelper(self,root,val,newval):
+        """
+        This function will actually replace all the values matched with given values in a Tree on the basis of flag argument if flag will be true then all matching values will get replaced other wise single value get updated
+        :param root: current Node
+        :param val: value to be updated
+        :param newval: new value which is to be assigned
+        :return:
+        """
+        if root==None:
+            return
+        else:
+            if root.val==val:
+                if self.forreplacingall== False and self.shouldstop==False:
+                    root.val = newval
+
+                    self.matches_found += 1
+                    self.shouldstop = True
+                elif self.forreplacingall==True:
+                    root.val = newval
+
+                    self.matches_found+=1
+
+
+                    self.replaceHelper(root.left,val,newval)
+                    self.replaceHelper(root.right,val,newval)
+
+            else:
+                if self.shouldstop == False:
+                    self.replaceHelper(root.left, val, newval)
+                    self.replaceHelper(root.right, val, newval)
+
+    def replaceAll(self,val,newval):
+        """
+        This function will replace all the values matched with given values in a Tree
+        :param val: value to be replaced
+        :param newval: new value which is going to be assigned to old valu
+        :return: nothing
+        """
+        self.shouldstop = False
+        self.forreplacingall = True
+        if self.root == None:
+            print("Tree is empty")
+        else:
+            self.matches_found = 0
+            self.replaceHelper(self.root, val, newval)
+            print(str(self.matches_found)+" matches found")
+
+    def replace(self,val,newval):
+        """
+        This function will replace only one tree node which matches with given value
+        :param val: value to be changed
+        :param newval: new value to be assigned to old value
+        :return: Nothing
+        """
+        self.shouldstop = False
+        self.forreplacingall = False
+        if self.root == None:
+            print("Tree is empty")
+        else:
+            self.matches_found = 0
+            self.replaceHelper(self.root,val,newval)
+            print(str(self.matches_found)+" matches found")
 
 
 lis = [1, 2, 3, 4, 5, 6, 7, 8, 9, None, 10, None, None, 11, None]
@@ -161,3 +223,5 @@ obj = BinaryTree()
 obj.addUsingList(lis)
 obj.show()
 obj.levelFinder(6)
+obj.replace(6,89)
+obj.show()
